@@ -1,0 +1,212 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sand: var(--sand);
+  --color-mist: var(--mist);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-gold-strong: var(--gold-strong);
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --radius-4xl: calc(var(--radius) + 28px);
+}
+
+:root {
+  /* Warm, soft surfaces: a porch in the morning, not a white app */
+  --paper: #fbf7f1;
+  --surface: #ffffff;
+  --sand: #f4ede2;
+  --mist: #f1eadf;
+
+  /* Brand ink from public/logo.png, softened for long reading */
+  --ink: #0c1d47;
+  --ink-soft: #55607a;
+  --line: #e8dfd1;
+
+  /* Brand accents: gold for warmth and the one action */
+  --gold: #f2b320;
+  --gold-strong: #c98a06;
+  --navy-950: #081430;
+  --navy-900: #0c1d47;
+  --navy-800: #1a3370;
+
+  /* shadcn surface map */
+  --background: #fbf7f1;
+  --foreground: #0c1d47;
+  --card: #ffffff;
+  --card-foreground: #0c1d47;
+  --popover: #ffffff;
+  --popover-foreground: #0c1d47;
+  --primary: #0c1d47;
+  --primary-foreground: #ffffff;
+  --secondary: #f4ede2;
+  --secondary-foreground: #0c1d47;
+  --muted: #f1eadf;
+  --muted-foreground: #55607a;
+  --accent: #f4ede2;
+  --accent-foreground: #0c1d47;
+  --destructive: #b3261e;
+  --border: #e8dfd1;
+  --input: #d9cfbf;
+  --ring: #0c1d47;
+  --radius: 1.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "kern", "liga";
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  input,
+  textarea {
+    caret-color: var(--ink);
+  }
+  * {
+    scrollbar-color: rgba(12, 29, 71, 0.3) var(--mist);
+    scrollbar-width: thin;
+  }
+  ::selection {
+    -webkit-text-fill-color: var(--ink);
+  }
+}
+
+@layer utilities {
+  /* Consistent page gutters and measure. */
+  .shell {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: 1.25rem;
+  }
+  /* Every field in the vehicle form shares one voice with the choice chips:
+     warm paper, hairline line, navy focus. */
+  .vehicle-form [data-slot="input"],
+  .vehicle-form [data-slot="select-trigger"],
+  .vehicle-form [data-slot="textarea"] {
+    height: 3rem;
+    min-height: 3rem;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background-color: var(--paper);
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .vehicle-form [data-slot="textarea"] {
+    height: auto;
+    min-height: 8rem;
+    padding-block: 0.75rem;
+    line-height: 1.6;
+  }
+  .vehicle-form [data-slot="input"]::placeholder,
+  .vehicle-form [data-slot="textarea"]::placeholder {
+    color: var(--ink-soft);
+  }
+  .vehicle-form [data-slot="input"]:hover,
+  .vehicle-form [data-slot="select-trigger"]:hover,
+  .vehicle-form [data-slot="textarea"]:hover {
+    border-color: rgba(12, 29, 71, 0.3);
+  }
+  .vehicle-form [data-slot="input"]:focus,
+  .vehicle-form [data-slot="select-trigger"]:focus,
+  .vehicle-form [data-slot="textarea"]:focus {
+    border-color: var(--ink);
+    background-color: #ffffff;
+  }
+  .vehicle-form [data-slot="select-trigger"] > svg {
+    color: var(--ink-soft);
+  }
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+  /* A soft, diffuse lift: never a hard block shadow. */
+  .soft-lift {
+    box-shadow: 0 1px 2px rgba(12, 29, 71, 0.05), 0 18px 40px -22px rgba(12, 29, 71, 0.28);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "smtp": {
+    "host": "smtp.ethereal.email",
+    "port": 587,
+    "secure": false
+  },
+  "user": "u2sk6fja2zrwi3kg@ethereal.email",
+  "pass": "TV72aC6AuJSQ7XTMMV",
+  "webUser": "u2sk6fja2zrwi3kg@ethereal.email",
+  "webPass": "TV72aC6AuJSQ7XTMMV"
+}

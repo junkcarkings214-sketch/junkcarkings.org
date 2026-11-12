@@ -1,0 +1,258 @@
+{
+    "title":  "Choose the visual world",
+    "question":  "Three ways to make a local cash offer read as a real transaction, not a lead form. Keep the roll, take the sale-bill alternate, or take the standing standard.",
+    "options":  [
+                    {
+                        "id":  "assigned",
+                        "kind":  "assigned",
+                        "label":  "The Offer File",
+                        "kicker":  "THE ROLL",
+                        "lineage":  "county clerk vehicle-title files",
+                        "thesis":  "Your offer is a document: one file, filled in by you, stamped by a person.",
+                        "palette":  [
+                                        "#efe6d2",
+                                        "#1e4d3d",
+                                        "#0c1d47",
+                                        "#b5321f",
+                                        "#f2b320"
+                                    ],
+                        "materials":  [
+                                          "manila stock",
+                                          "form-green ink",
+                                          "rubber stamp",
+                                          "perforated stub"
+                                      ],
+                        "viewport":  "A manila offer file laid open edge to edge, a working year/make/model line in its first panel, and a filled gold Start My File stamp at the fold.",
+                        "risk":  "Government-form gravity reads cold if the paper warmth and the human stamp are timid.",
+                        "raised":  [
+                                       {
+                                           "from":  "challenger-six-pack",
+                                           "raise":  "One readout, one truth: each file field owns a single fact, and the page reads as a cross-check rather than a pile."
+                                       },
+                                       {
+                                           "from":  "challenger-arcade",
+                                           "raise":  "Every block sits on one measured letter-size grid, integer-aligned from phone to desktop."
+                                       },
+                                       {
+                                           "from":  "challenger-pattern",
+                                           "raise":  "Open and completed sections differ by dashed or solid rule and a stamp, never by colour alone."
+                                       },
+                                       {
+                                           "from":  "challenger-cityscape",
+                                           "raise":  "A received, reviewed, offered register runs as three synchronized bands down the file edge."
+                                       },
+                                       {
+                                           "from":  "challenger-illuminated",
+                                           "raise":  "A real margin rail carries plain-language notes beside the fields they explain."
+                                       }
+                                   ],
+                        "html":  ".impeccable/mocks/decision/assigned.html"
+                    },
+                    {
+                        "id":  "model-pick",
+                        "kind":  "pick",
+                        "label":  "The Sale Bill",
+                        "kicker":  "IMPECCABLEâ€™S PICK",
+                        "lineage":  "country livestock auction sale bills",
+                        "thesis":  "Your car is one numbered lot on today\u0027s sale bill, called out loud by a person.",
+                        "palette":  [
+                                        "#e8d9b8",
+                                        "#8a4b2a",
+                                        "#1d1a16",
+                                        "#cf3b2c",
+                                        "#f2b320"
+                                    ],
+                        "materials":  [
+                                          "cream sale-bill stock",
+                                          "brush-marker caps",
+                                          "stapled fence notice"
+                                      ],
+                        "viewport":  "A sale-bill front headed LOT 001 YOUR VEHICLE, a brushed WE BUY JUNK CARS line, and a live year/make/model line clipped to the sheet.",
+                        "risk":  "The most familiar local-buyer move; without real sale-bill typography it becomes a retro filter.",
+                        "html":  ".impeccable/mocks/decision/model-pick.html"
+                    },
+                    {
+                        "id":  "challenger-grid-horizon",
+                        "kind":  "challenger",
+                        "catalogId":  "digital-design-canon-grid-horizon-sunset",
+                        "label":  "Grid Horizon",
+                        "verdict":  "competitive",
+                        "lineage":  "retro synth covers and wireframe horizons",
+                        "thesis":  "Every offer is a drive toward a horizon that keeps arriving.",
+                        "palette":  [
+                                        "#2b1e6e",
+                                        "#e94b8a",
+                                        "#ffd166",
+                                        "#19d3d3",
+                                        "#0b0a14"
+                                    ],
+                        "materials":  [
+                                          "banded sun",
+                                          "wireframe grid",
+                                          "silhouette edges"
+                                      ],
+                        "viewport":  "A cyan perspective grid running to a striped sun on the horizon, the offer headline extruded above it, and a live vehicle line on the grid\u0027s first row.",
+                        "case":  "Holds audience identification â€” truck and car culture already owns this poster â€” but a horizon explains the offer less clearly than a file does.",
+                        "risk":  "A poster world that can swallow the working form.",
+                        "html":  ".impeccable/mocks/decision/challenger-grid-horizon.html"
+                    },
+                    {
+                        "id":  "challenger-six-pack",
+                        "kind":  "challenger",
+                        "catalogId":  "signals-instruments-night-flight-six-pack",
+                        "label":  "Night Six-Pack",
+                        "verdict":  "declined",
+                        "lineage":  "night-flight instrument six-packs",
+                        "thesis":  "Six gauges agree before the pilot trusts the cloud.",
+                        "palette":  [
+                                        "#0b0b0c",
+                                        "#e8e6df",
+                                        "#8ef0a6",
+                                        "#f2b320",
+                                        "#c8322e"
+                                    ],
+                        "materials":  [
+                                          "matte black panel",
+                                          "radium glow",
+                                          "etched ticks"
+                                      ],
+                        "viewport":  "Six luminous dials in two rows, each owning one reading, with terse placard caps beneath.",
+                        "case":  "Fuses poorly: a Central Texas seller has never read a six-pack, and gauges do not explain a four-part form.",
+                        "kept":  "One readout, one truth: each file field owns a single fact and the page reads as a cross-check.",
+                        "hero":  "https://impeccable.style/worlds/cards/signals-instruments-night-flight-six-pack-hero.webp",
+                        "board":  "https://impeccable.style/worlds/cards/signals-instruments-night-flight-six-pack.webp"
+                    },
+                    {
+                        "id":  "challenger-arcade",
+                        "kind":  "challenger",
+                        "catalogId":  "medium-native-crt-arcade-pixel-glow",
+                        "label":  "Arcade Phosphor",
+                        "verdict":  "declined",
+                        "lineage":  "CRT arcade cabinets",
+                        "thesis":  "A 240-line grid becomes a stage with real glow.",
+                        "palette":  [
+                                        "#0b0b0f",
+                                        "#ffffff",
+                                        "#f5d64c",
+                                        "#e8452c",
+                                        "#3ad0c2"
+                                    ],
+                        "materials":  [
+                                          "sprite palette",
+                                          "scanline gaps",
+                                          "phosphor bloom"
+                                      ],
+                        "viewport":  "Score and menus pinned to the top edge, the playfield composing in whole tiles.",
+                        "case":  "Fuses poorly: a game frame makes a cash offer feel like a toy.",
+                        "kept":  "Whole-grid discipline: every block lands on one measured grid, never a loose stack.",
+                        "hero":  "https://impeccable.style/worlds/cards/medium-native-crt-arcade-pixel-glow-hero.webp",
+                        "board":  "https://impeccable.style/worlds/cards/medium-native-crt-arcade-pixel-glow.webp"
+                    },
+                    {
+                        "id":  "challenger-pattern",
+                        "kind":  "challenger",
+                        "catalogId":  "fashion-folded-worlds-sewing-pattern-envelope",
+                        "label":  "Pattern Tissue",
+                        "verdict":  "declined",
+                        "lineage":  "home sewing pattern envelopes",
+                        "thesis":  "Every variant is a lettered view on crackling tissue.",
+                        "palette":  [
+                                        "#e9dfc6",
+                                        "#1d1c19",
+                                        "#b5321f",
+                                        "#7c9bb0"
+                                    ],
+                        "materials":  [
+                                          "manila tissue",
+                                          "drafting marks",
+                                          "gouache figures"
+                                      ],
+                        "viewport":  "One tall tissue sheet with dashed cutting lines, circled piece numbers, and a grain arrow.",
+                        "case":  "Fuses poorly: nobody selling a truck identifies with dressmaking.",
+                        "kept":  "State legibility without colour: open and completed sections differ by dashed or solid rule and a stamp.",
+                        "hero":  "https://impeccable.style/worlds/cards/fashion-folded-worlds-sewing-pattern-envelope-hero.webp",
+                        "board":  "https://impeccable.style/worlds/cards/fashion-folded-worlds-sewing-pattern-envelope.webp"
+                    },
+                    {
+                        "id":  "challenger-cityscape",
+                        "kind":  "challenger",
+                        "catalogId":  "light-shadow-caustics-rain-night-cityscape",
+                        "label":  "Rain Night City",
+                        "verdict":  "declined",
+                        "lineage":  "rain-dark city nocturnes",
+                        "thesis":  "The city\u0027s night bands double every light in wet streets.",
+                        "palette":  [
+                                        "#0b1020",
+                                        "#1d4ed8",
+                                        "#f2b320",
+                                        "#c8ccd4",
+                                        "#e8e6df"
+                                    ],
+                        "materials":  [
+                                          "cobalt blue hour",
+                                          "amber transit veins",
+                                          "wet reflections"
+                                      ],
+                        "viewport":  "Skyline, street, and river reflection stacked as synchronized bands.",
+                        "case":  "Fuses poorly: the seller\u0027s world is a driveway, not a downtown skyline.",
+                        "kept":  "A time register: received, reviewed, and offered read as three synchronized bands down the file edge.",
+                        "hero":  "https://impeccable.style/worlds/cards/light-shadow-caustics-rain-night-cityscape-hero.webp",
+                        "board":  "https://impeccable.style/worlds/cards/light-shadow-caustics-rain-night-cityscape.webp"
+                    },
+                    {
+                        "id":  "challenger-illuminated",
+                        "kind":  "challenger",
+                        "catalogId":  "typography-calligraphy-writing-illuminated-initial-vine",
+                        "label":  "Illuminated Initial",
+                        "verdict":  "declined",
+                        "lineage":  "illuminated manuscript initials",
+                        "thesis":  "A single initial opens into a margin of gold leaf and small stories.",
+                        "palette":  [
+                                        "#f4ead0",
+                                        "#c8a13a",
+                                        "#1f4fa0",
+                                        "#b5321f",
+                                        "#1d1c19"
+                                    ],
+                        "materials":  [
+                                          "burnished gold leaf",
+                                          "lapis vine",
+                                          "vellum"
+                                      ],
+                        "viewport":  "One giant historiated initial outranking three lines of compact bookhand inside an inhabited margin.",
+                        "case":  "Fuses poorly: medieval vellum is a costume on a Texas vehicle buyer.",
+                        "kept":  "A true margin rail: plain-language notes live beside the fields they explain.",
+                        "hero":  "https://impeccable.style/worlds/cards/typography-calligraphy-writing-illuminated-initial-vine-hero.webp",
+                        "board":  "https://impeccable.style/worlds/cards/typography-calligraphy-writing-illuminated-initial-vine.webp"
+                    }
+                ],
+    "reroll":  {
+                   "registers":  [
+                                     "safer",
+                                     "bolder"
+                                 ]
+               },
+    "buildPath":  {
+                      "value":  "code",
+                      "toggle":  false
+                  },
+    "canon":  true,
+    "canonCard":  {
+                      "kind":  "canon",
+                      "label":  "The category standard",
+                      "thesis":  "The local-service landing page this category ships, executed at full craft.",
+                      "palette":  [
+                                      "#ffffff",
+                                      "#111827",
+                                      "#2563eb"
+                                  ],
+                      "materials":  [
+                                        "clean grid",
+                                        "product photography"
+                                    ],
+                      "viewport":  "A white hero with a headline, subcopy, primary button, and a row of trust icons, then three steps and a proof band.",
+                      "risk":  "Indistinguishable from the competition by design.",
+                      "html":  ".impeccable/mocks/decision/canon.html"
+                  },
+    "steer":  true
+}
