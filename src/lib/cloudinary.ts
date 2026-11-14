@@ -8,7 +8,7 @@ import { v2 as cloudinary } from "cloudinary";
  * server only — this module must never be imported from client code.
  *
  * Uploads go to the `vehicle-photos` folder; the returned URL is a signed-off
- * public delivery URL usable in the admin dashboard and the owner email.
+ * public delivery URL usable in the owner notification email.
  */
 
 // Configure from CLOUDINARY_URL (true = parse the single env var).

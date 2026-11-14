@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 import path from "node:path";
 import { vehicleSubmissionSchema, PHOTO_LIMITS } from "@/lib/validation/vehicle-submission";
-import type { PhotoToSave, VehiclePhotoMeta } from "@/lib/storage";
+import type { PhotoToSave, VehiclePhotoMeta } from "@/lib/types";
 import { createVehicleSubmission } from "@/lib/submissions";
-import { checkRateLimit } from "@/lib/admin/auth";
+import { checkRateLimit } from "@/lib/rate-limit";
 import {
   isCloudinaryConfigured,
   uploadPhotoToCloudinary,
-} from "@/lib/storage/cloudinary";
+} from "@/lib/cloudinary";
 
 /** Verify a buffer really is a JPEG/PNG/WEBP before trusting the declared MIME type. */
 function sniffImageType(data: Buffer): string | null {
@@ -163,8 +163,9 @@ export async function POST(req: NextRequest) {
       size: buffer.byteLength,
     };
 
-    // Prefer Cloudinary hosting; if it fails or is unconfigured, fall back to
-    // the local-disk photo store so a CDN outage never loses the lead.
+    // Prefer Cloudinary hosting; if it fails or is unconfigured, the photo
+    // bytes are attached to the owner email instead so a CDN outage never
+    // loses the lead.
     if (isCloudinaryConfigured()) {
       try {
         const uploaded = await uploadPhotoToCloudinary(buffer);
@@ -174,7 +175,7 @@ export async function POST(req: NextRequest) {
         meta.mimeType = uploaded.format === "jpg" ? "image/jpeg" : sniffed;
       } catch (uploadError) {
         console.error(
-          "[photos] Cloudinary upload failed, storing locally instead:",
+          "[photos] Cloudinary upload failed, attaching to email instead:",
           uploadError instanceof Error ? uploadError.message : uploadError,
         );
       }

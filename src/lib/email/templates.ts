@@ -1,4 +1,4 @@
-import type { VehicleSubmissionRecord } from "@/lib/storage";
+import type { VehicleSubmissionRecord } from "@/lib/types";
 
 /**
  * Build the "New Vehicle Submission" owner notification email.
@@ -201,7 +201,7 @@ export function buildSubmissionEmailHtml(
             <tr>
               <td style="padding:20px 32px 24px;border-top:1px solid ${BRAND.line};">
                 <p style="margin:0;font-size:12px;color:${BRAND.inkSoft};font-family:Arial,Helvetica,sans-serif;">Reference <strong style="color:${BRAND.navy};">${esc(record.id)}</strong></p>
-                <p style="margin:6px 0 0;font-size:12px;color:${BRAND.inkSoft};font-family:Arial,Helvetica,sans-serif;">Full details and status controls live in the owner dashboard.</p>
+                <p style="margin:6px 0 0;font-size:12px;color:${BRAND.inkSoft};font-family:Arial,Helvetica,sans-serif;">Reply to this email to reach the customer directly.</p>
               </td>
             </tr>
           </table>

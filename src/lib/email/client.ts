@@ -1,6 +1,6 @@
 import nodemailer, { type Transporter } from "nodemailer";
 import { buildSubmissionEmailHtml, buildSubmissionEmailText } from "./templates";
-import type { PhotoToSave, VehicleSubmissionRecord } from "@/lib/storage";
+import type { PhotoToSave, VehicleSubmissionRecord } from "@/lib/types";
 
 /**
  * Lazily-created Nodemailer transport. Credentials only ever live in

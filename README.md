@@ -59,7 +59,6 @@ node scripts/dev-tests/check-ethereal-inbox.mjs .tmp/smtp.json
 | `/` | Hero, "get an offer" entry block, what we buy, how it works, why choose us, CTA, FAQ |
 | `/sell-your-car` | 4-section submission form (vehicle info → condition → photos → customer info) |
 | `/contact` | Phone, email, and service-area info |
-| `/admin/login` → `/admin` | Password-protected owner dashboard |
 
 ### Submission form
 
@@ -73,32 +72,16 @@ node scripts/dev-tests/check-ethereal-inbox.mjs .tmp/smtp.json
 
 ## Data, storage & email
 
-- **Persistence:** submissions + photos are stored on disk in `.data/`
-  (gitignored) behind the `VehicleStorageProvider` interface in `src/lib/storage/`.
-  The full record and a record.json per submission under
-  `.data/submissions/<uuid>/` (`photos/` beside it).
-- **Photos are never public:** they stream through the authenticated route
-  `GET /api/admin/photos/[subId]/[photoId]` (session cookie checked first).
-- **Production database:** the plan for moving to Supabase (schema, bucket, exact
-  provider implementation) is documented in [`docs/persistence.md`](docs/persistence.md).
-  Implementing Supabase Vehicle Storage and registering it in
-  `src/lib/storage/index.ts` is the only change required.
+- **Persistence:** none — submissions are not stored server-side. The owner
+  email IS the record. This keeps the app serverless-safe (no filesystem
+  writes in production).
+- **Photos:** uploaded to Cloudinary (`CLOUDINARY_URL`); the delivery links are
+  included in the owner email. Photos whose Cloudinary upload fails are
+  attached to the email as files, so a CDN outage never loses a lead.
 - **Email:** `src/lib/email/client.ts` (server-only Nodemailer transport) +
-  `src/lib/email/templates.ts` (branded HTML/text template with all submitted
-  data and photos attached). Notification failures never lose a submission.
-
-## Admin dashboard
-
-- `/admin/login` — password sign-in. Sessions are HMAC-signed,
-  `httpOnly` + `sameSite=lax` cookies via `src/lib/admin/auth.ts`.
-- Login is rate-limited (8 attempts / 15 min per IP, in memory).
-- Every admin page and admin API route calls `requireAdmin()` / verifies the
-  session — failing closed.
-- Dashboard shows totals + status counts + recent submissions; the list and
-  detail pages show full vehicle, condition, customer data, and photos; status
-  can be moved between New → Contacted → Offer sent → Closed.
-- When the business moves to Supabase Auth, replace the helpers in
-  `src/lib/admin/auth.ts`; page/route code keeps calling the same guards.
+  `src/lib/email/templates.ts` (branded HTML/text template). A failed email
+  send fails the request visibly (HTTP 500) rather than silently losing the
+  lead.
 
 ## Security notes
 
@@ -114,7 +97,6 @@ node scripts/dev-tests/check-ethereal-inbox.mjs .tmp/smtp.json
 ```bash
 # uses the publicly running server (default http://localhost:3000)
 node scripts/dev-tests/submission-e2e.mjs
-node scripts/dev-tests/admin-e2e.mjs   # requires ADMIN_COOKIE env var
 ```
 
 ## Credits

@@ -1,30 +1,18 @@
 import { randomUUID } from "node:crypto";
-import { storage } from "@/lib/storage";
-import type {
-  PhotoToSave,
-  SubmissionStatus,
-  VehiclePhotoMeta,
-  VehicleSubmissionRecord,
-} from "@/lib/storage";
+import type { PhotoToSave, VehicleSubmissionRecord } from "@/lib/types";
 import { sendOwnerNotification } from "@/lib/email/client";
 import type { VehicleSubmissionInput } from "@/lib/validation/vehicle-submission";
 
-export type { SubmissionStatus };
-
-export const SUBMISSION_STATUSES: SubmissionStatus[] = [
-  "new",
-  "contacted",
-  "offered",
-  "closed",
-];
-
-export const STATUS_LABELS: Record<SubmissionStatus, string> = {
-  new: "New",
-  contacted: "Contacted",
-  offered: "Offer sent",
-  closed: "Closed",
-};
-
+/**
+ * Build the submission record and email it to the business owner.
+ *
+ * There is no server-side persistence: the owner email IS the record. All
+ * Cloudinary-hosted photos are included as delivery links; photos that
+ * failed CDN upload are attached as files so a lead is never lost.
+ *
+ * Throws when the owner email cannot be sent, so the API route can fail the
+ * request visibly instead of silently dropping the lead.
+ */
 export async function createVehicleSubmission(
   input: VehicleSubmissionInput,
   photoData: PhotoToSave[],
@@ -32,7 +20,6 @@ export async function createVehicleSubmission(
   const record: VehicleSubmissionRecord = {
     id: randomUUID(),
     createdAt: new Date().toISOString(),
-    status: "new",
     vehicle: {
       year: input.year,
       make: input.make,
@@ -58,60 +45,19 @@ export async function createVehicleSubmission(
       zip: input.customerZip,
       message: input.customerMessage,
     },
-    // Overwrite original file names inside the record with a sanitized,
-    // attachment-only version of the metadata.
-    photos: [] as VehiclePhotoMeta[],
-    notifications: { emailSent: false },
+    photos: photoData.map((p) => p.meta),
   };
 
-  // Persist first — email delivery must never decide whether a lead is kept.
-  const saved = await storage.createSubmission(
-    {
-      ...record,
-      photos: photoData.map((p) => p.meta),
-    },
-    photoData,
-  );
-
-  const notification = await sendOwnerNotification(
-    {
-      ...saved,
-      photos: photoData.map((p) => p.meta),
-    },
-    photoData,
-  );
-
-  // Record whether the owner email actually went out, so the admin dashboard
-  // can flag submissions whose notification failed.
-  const recorded = await storage.setNotificationOutcome(saved.id, {
-    emailSent: notification.sent,
-    emailError: notification.error ?? null,
-  });
+  const notification = await sendOwnerNotification(record, photoData);
 
   if (!notification.sent) {
-    console.warn(
-      `[submissions] owner notification not sent for ${saved.id}: ${notification.error}`,
+    console.error(
+      `[submissions] owner notification failed for ${record.id}: ${notification.error}`,
+    );
+    throw new Error(
+      notification.error ?? "Owner notification could not be sent",
     );
   }
 
-  return recorded ?? saved;
-}
-
-export async function listVehicleSubmissions(): Promise<
-  VehicleSubmissionRecord[]
-> {
-  return storage.listSubmissions();
-}
-
-export async function getVehicleSubmission(
-  id: string,
-): Promise<VehicleSubmissionRecord | null> {
-  return storage.getSubmission(id);
-}
-
-export async function setSubmissionStatus(
-  id: string,
-  status: SubmissionStatus,
-): Promise<VehicleSubmissionRecord | null> {
-  return storage.updateSubmissionStatus(id, status);
+  return record;
 }
