@@ -69,6 +69,11 @@ for (const [name, args, status] of [
     201,
   ],
   [
+    "no-photos-rejected",
+    { photos: [] },
+    400,
+  ],
+  [
     "missing-condition",
     { payloadOverride: { condition: "" }, photos: [] },
     400,

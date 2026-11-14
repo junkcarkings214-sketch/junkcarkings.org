@@ -211,6 +211,7 @@ export function VehicleSubmissionForm() {
   const [photos, setPhotos] = useState<UploadedPhoto[]>([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [reference, setReference] = useState<string | null>(null);
   // Refresh the year ceiling when the year picker opens (event-based update —
   // no effect needed), so the prerendered shell stays stable.
@@ -245,8 +246,15 @@ export function VehicleSubmissionForm() {
   }, []);
 
   async function onSubmit(values: VehicleSubmissionInput) {
+    setSubmitError(null);
     setServerError(null);
     setUploadProgress(0);
+
+    if (photos.length === 0) {
+      setSubmitError("Please add at least one photo of your vehicle.");
+      return;
+    }
+
     const result = await submitVehicleSubmission(
       values,
       photos.map((p) => p.file),
@@ -322,7 +330,9 @@ export function VehicleSubmissionForm() {
     <Form {...form}>
       <form
         noValidate
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit, () => {
+          setSubmitError("Please fill in all required fields marked with *.");
+        })}
         className="vehicle-form flex flex-col gap-8"
       >
         {serverError && (
@@ -612,7 +622,7 @@ export function VehicleSubmissionForm() {
         <section className="border-t border-line pt-8">
           <SectionHeader step={3}
             title="Vehicle Photos"
-            description="Not required, but clear photos help us make a stronger offer faster."
+            description="Required — clear photos help us make a stronger offer faster."
           />
           <div className="mt-6">
             <PhotoUploader value={photos} onChange={setPhotos} disabled={submitting} />
@@ -721,6 +731,16 @@ export function VehicleSubmissionForm() {
 
         {/* ------------------------- Submit ------------------------- */}
         <div className="flex flex-col gap-4 border-t border-line pt-8">
+          {submitError && (
+            <div
+              role="alert"
+              aria-live="assertive"
+              className="rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-center text-sm font-medium text-destructive"
+            >
+              {submitError}
+            </div>
+          )}
+
           {submitting && (
             <div
               className="flex items-center justify-center"

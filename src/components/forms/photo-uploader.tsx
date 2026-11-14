@@ -127,7 +127,7 @@ export function PhotoUploader({
           <UploadCloud className="size-5" aria-hidden />
         </span>
         <p id={inputId} className="text-[15px] font-medium text-ink">
-          <span className="sr-only">Upload photos. </span>
+          <span className="sr-only">Upload photos (required). </span>
           Drag &amp; drop photos here, or{" "}
           <span className="font-semibold text-ink underline decoration-gold decoration-2 underline-offset-4">
             browse your device

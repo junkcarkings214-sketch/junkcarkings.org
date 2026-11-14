@@ -99,10 +99,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // ---- Collect + validate photos ----
+  // ---- Collect + validate photos (at least one is required) ----
   const files = formData
     .getAll("photos")
     .filter((f): f is File => f instanceof File && f.size > 0);
+
+  if (files.length === 0) {
+    return NextResponse.json(
+      { ok: false, error: "Please add at least one photo of your vehicle." },
+      { status: 400 },
+    );
+  }
 
   if (files.length > PHOTO_LIMITS.maxCount) {
     return NextResponse.json(
